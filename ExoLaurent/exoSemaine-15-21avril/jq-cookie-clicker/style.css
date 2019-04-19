@@ -1,0 +1,30 @@
+body {
+	color: #EA51F9;
+	background-color: #EECCF1;
+}
+
+.main {
+	width: 400px;
+	margin: 1em auto;
+}
+
+.cake img {
+	max-width: 100%;
+}
+
+.counter {
+	font-size: 20em;
+	text-align: center;
+}
+
+.sad-panda {
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+.sad-panda img {
+	width: 585px;
+	margin: 0 auto;
+	display: block;
+}

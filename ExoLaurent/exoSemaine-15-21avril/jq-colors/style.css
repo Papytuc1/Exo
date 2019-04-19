@@ -1,0 +1,27 @@
+
+.main {
+	width: 400px;
+	margin: 1em auto;
+}
+
+.color {
+	height: 40px;
+	width: 40px;
+	border: 1px solid #000;
+}
+
+footer {
+	position: absolute;
+	bottom: 0;
+}
+.sad-panda {
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+.sad-panda img {
+	width: 585px;
+	margin: 0 auto;
+	display: block;
+}

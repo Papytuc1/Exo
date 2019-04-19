@@ -1,0 +1,23 @@
+{
+  "name": "jq-quatrequartclicker",
+  "version": "1.0.0",
+  "description": "Réalisez un petit jeu nommé cookie clicker, le but étant de détecter les click sur le cookie et d'incrémenter le contenu de la div #count  avec le compte total !",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SimplonTlse02/jq-quatrequartclicker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SimplonTlse02/jq-quatrequartclicker/issues"
+  },
+  "homepage": "https://github.com/SimplonTlse02/jq-quatrequartclicker#readme",
+  "dependencies": {
+    "devtools-detect": "^2.1.1",
+    "jquery": "^3.1.1"
+  }
+}
