@@ -6,6 +6,15 @@
     flex-direction: column;
     flex-wrap: wrap;
 }
+.flocon{
+  background-image: url("flocon.png");
+  background-size: cover;
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  background-color: black;
+  
+}
 
 .shake{
     animation: shake 2s;

@@ -27,30 +27,50 @@ $("#shake").on("click", function () {
     /* $("#cadre div").toggleClass("shake") */
 })
 
-$("#cadre").on("click",".manip",function () {
-        if ($(this).attr("data") == "red") {
-            $(this).effect("explode", 1000, function() {
-                $(this).remove();
-            })
-        }
-        else if ($(this).attr("data") != "green" && $(this).attr("data") != "red" && $(this).attr("data") != "blue") {
-            /* $(this).css("transition-delay","2s").css("background","red").attr("data","red") */
-        }
+$("#cadre").on("click", ".manip", function () {
+    if ($(this).attr("data") == "red") {
+        $(this).effect("explode", 1000, function () {
+            $(this).remove();
+        })
+    } else if ($(this).attr("data") != "green" && $(this).attr("data") != "red" && $(this).attr("data") != "blue") {
+        /* $(this).css("transition-delay","2s").css("background","red").attr("data","red") */
+    }
 })
-$("#cadre").on("mouseover",".manip",function () {
+$("#cadre").on("mouseover", ".manip", function () {
     if ($(this).attr("data") == "green") {
-        $(this).css("background","blue")
+        $(this).css("background", "blue")
     }
 })
 
-$("#cadre").on("dblclick",".manip",function(){
+$("#cadre").on("dblclick", ".manip", function () {
     let i = 0;
     let color = $(this).attr("data");
-     $(`div[data=${color}]`).each(function(){
+    $(`div[data=${color}]`).each(function () {
         i++
-    }) 
+    })
     $("#dialog").dialog({
-        modal:true,
-        title: "Il y'a "+i+" Div de couleur "+color
-      });
+        modal: true,
+        title: "Il y'a " + i + " Div de couleur " + color
+    });
 })
+function remove() {
+    if ($(".flocon").offset().top > $("body").innerHeight() * 2) {
+        $(".flocon").remove();
+    }
+}
+
+function flocon() {
+    var body = $("body")
+    $("<div class='flocon'></div>").prependTo("body");
+
+    for (i = 0; i < body.innerHeight(); i++) {
+            $(".flocon").animate({
+                right: `${Math.floor(Math.random()*body.innerWidth())}px`
+            }, 1000);
+            $(".flocon").animate({
+                top: `+=${Math.floor(Math.random()*body.innerHeight())}px`
+            }, 1000);
+        }
+    }
+flocon()
+/* setInterval(flocon, 1000) */
