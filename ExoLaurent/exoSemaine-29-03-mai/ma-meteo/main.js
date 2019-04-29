@@ -10,14 +10,24 @@ let markers = {
         "lat": 43.6084213,
         "lon": 3.879910699999982
     }
-}
+};
 let icon = L.icon({
     iconUrl: "customMarker.png",
     iconSize: [50, 50],
     iconAnchor: [25, 50],
     popupAnchor: [-3, -76]
-})
+});
+let markTab =[];
+let i = 0;
 function initMap() {
+    let markTabDes=JSON.parse(localStorage.getItem("marker"))
+    
+    markTabDes.forEach(element => {
+        console.log(element.lng);
+        let oldMarker= L.marker([element.lat, element.lng], {
+            icon: icon
+        }).addTo(macarte);
+    });
     // Créer l'objet "macarte" et l'insèrer dans l'élément HTML qui a l'ID "map"
     macarte = L.map('map').setView([lat, lon], 11);
     // Leaflet ne récupère pas les cartes (tiles) sur un serveur par défaut. Nous devons lui préciser où nous souhaitons les récupérer. Ici, openstreetmap.fr
@@ -34,10 +44,11 @@ function initMap() {
     };
     macarte.on("click",function(e){
         let newMarker= new L.Marker([e.latlng.lat,e.latlng.lng],{icon:icon}).addTo(macarte);
-        console.log(newMarker)
+        markTab[i]={lat:e.latlng.lat,lng:e.latlng.lng};
+        localStorage.setItem("marker",JSON.stringify(markTab))
+        i++;
     });
 };
 window.onload = function () {
-    // Fonction d'initialisation qui s'exécute lorsque le DOM est chargé
     initMap();
 };

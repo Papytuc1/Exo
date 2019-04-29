@@ -1,5 +1,5 @@
 function addTask() {
-    let li = `<li class="list-group-item">${$("input").val()}<i class="fas fa-check m-1"></i><i class="fas fa-edit m-1"></i><i class="fas fa-trash m-1"></i></li>`;
+    let li = `<li class="list-group-item"><span class="text">${$("input").val()}</span><i class="fas fa-check m-1"></i><i class="fas fa-edit m-1"></i><i class="fas fa-trash m-1"></i></li>`;
     $("ul").append(li);
     $("input").val("");
 };
@@ -15,7 +15,15 @@ $("input").keypress(function (e) {
         }
     }
 });
-
-$("ul").on("click",".fa-trash",function(){
+$("ul").on("click", ".fa-trash", function () {
     $(this).parent().remove();
-})
+});
+$("ul").on("click", ".fa-edit", function () {
+    $("#text_edit,#edit").remove();
+    $(this).parent().append("<input type='text' id='text_edit' /><button id='edit' class = 'btn btn-warning'>Modifier</button>");
+    $("#edit").on("click", function () {
+        $(this).parent().addClass("temporary");
+        $(".temporary .text").text($("#text_edit").val());
+        $(this).parent().removeClass("temporary");
+    });
+});
