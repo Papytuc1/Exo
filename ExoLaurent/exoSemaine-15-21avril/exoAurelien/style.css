@@ -12,12 +12,14 @@
   position: absolute;
   height: 100px;
   width: 100px;
-  background-color: black;
   
 }
 
 .shake{
     animation: shake 2s;
+}
+body{
+  background-color: darkblue;
 }
 
 @keyframes shake {

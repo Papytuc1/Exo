@@ -54,23 +54,26 @@ $("#cadre").on("dblclick", ".manip", function () {
     });
 })
 function remove() {
-    if ($(".flocon").offset().top > $("body").innerHeight() * 2) {
+    if ($(".flocon").css("top") > screen) {
         $(".flocon").remove();
     }
 }
+var screen = 500;
 
 function flocon() {
     var body = $("body")
-    $("<div class='flocon'></div>").prependTo("body");
+    var rand = Math.floor(Math.random()*100);
+    var div = $("<div class='flocon'></div>");
+    div.css("right",`${rand}%`);
+    div.prependTo("body");
 
     for (i = 0; i < body.innerHeight(); i++) {
-            $(".flocon").animate({
-                right: `${Math.floor(Math.random()*body.innerWidth())}px`
-            }, 1000);
-            $(".flocon").animate({
+            div.animate({
+                right: `+=${Math.floor(Math.random()*0.1*body.innerWidth()*(Math.pow(-1,i)))}px`,
                 top: `+=${Math.floor(Math.random()*body.innerHeight())}px`
             }, 1000);
+            remove();
         }
     }
-flocon()
+    flocon()
 /* setInterval(flocon, 1000) */
