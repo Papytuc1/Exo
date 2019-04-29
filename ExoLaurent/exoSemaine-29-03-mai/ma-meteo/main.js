@@ -34,8 +34,9 @@ function initMap() {
     };
     macarte.on("click",function(e){
         let newMarker= new L.Marker([e.latlng.lat,e.latlng.lng],{icon:icon}).addTo(macarte);
+        console.log(newMarker)
     });
-}
+};
 window.onload = function () {
     // Fonction d'initialisation qui s'exécute lorsque le DOM est chargé
     initMap();

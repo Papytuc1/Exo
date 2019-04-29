@@ -1,5 +1,5 @@
 function addTask() {
-    let li = `<li class="list-group-item">${$("input").val()}<i class="fas fa-check"></i><i class="fas fa-edit"></i><i class="fas fa-trash"></i></li>`;
+    let li = `<li class="list-group-item">${$("input").val()}<i class="fas fa-check m-1"></i><i class="fas fa-edit m-1"></i><i class="fas fa-trash m-1"></i></li>`;
     $("ul").append(li);
     $("input").val("");
 };
@@ -15,3 +15,7 @@ $("input").keypress(function (e) {
         }
     }
 });
+
+$("ul").on("click",".fa-trash",function(){
+    $(this).parent().remove();
+})
