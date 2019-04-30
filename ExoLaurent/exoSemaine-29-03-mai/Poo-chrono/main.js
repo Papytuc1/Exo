@@ -9,7 +9,7 @@ class Chrono {
         this.affichage = document.querySelectorAll(".affichage");
     } 
     run() {
-        this.ms += 1;    
+        this.ms ++;    
         if (this.ms == 10) {
             this.ms = 0;
             this.currentTime += 1;

@@ -19,6 +19,7 @@ let icon = L.icon({
 });
 let markTab = [];
 let i = 0;
+
 function initMap() {
     let markTabDes = JSON.parse(localStorage.getItem("marker"));
     // Créer l'objet "macarte" et l'insèrer dans l'élément HTML qui a l'ID "map"
@@ -31,48 +32,41 @@ function initMap() {
         maxZoom: 20
     }).addTo(macarte);
     markTabDes.forEach(element => {
-        console.log(element.lng);
-        L.marker([element.lat, element.lng], {
-            icon: icon
-        }).addTo(macarte).bindPopup("yo");
+        callRequest(element.lat, element.lng)
     });
     for (marker in markers) {
-        L.marker([markers[marker].lat, markers[marker].lon], {
-            icon: icon
-        }).addTo(macarte).bindPopup("yo");
+        callRequest(markers[marker].lat, markers[marker].lon)
     };
     macarte.on("click", function (e) {
-         new L.Marker([e.latlng.lat, e.latlng.lng], {
-            icon: icon
-        }).addTo(macarte).bindPopup("yo");
+        callRequest(e.latlng.lat, e.latlng.lng);
         markTab[i] = {
             lat: e.latlng.lat,
             lng: e.latlng.lng
         };
-        localStorage.setItem("marker", JSON.stringify(markTab))
+        localStorage.setItem("marker", JSON.stringify(markTab));
         i++;
+    });
+};
+let url = "http://api.openweathermap.org/data/2.5/weather";
+let appid = "922a8b226c6fc31f1dd318db9c30f91d";
+const request = async (lat, lon) => {
+    try {
+        const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appid}&lang=fr`);
+        const json = await response.json();
+        return json;
+    } catch (e) {
+        console.error("err : " + e);
+    }
+};
+
+function callRequest(lat, lng) {
+    request(lat, lng).then((result) => {
+        let e = new L.Marker([lat, lng], {
+            icon: icon,
+            /* draggable: true */
+        }).addTo(macarte).bindPopup(result.weather[0].description);
     });
 };
 window.onload = function () {
     initMap();
 };
-
-var url = "http://api.openweathermap.org/data/2.5/weather";
-var appid ="922a8b226c6fc31f1dd318db9c30f91d";
-/* var myHeaders = new Headers();
-var myInit = { method: 'GET',
-               headers: myHeaders,
-               mode: 'cors',
-               cache: 'default' }; */
-const request = async () => {
-    try{
-        const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appid}`);
-        const json = await response.json();
-        return json;
-    }
-    catch(e){
-        console.error("err : "+e);
-    }
-};
-request().then((e)=>console.log(e));
-
