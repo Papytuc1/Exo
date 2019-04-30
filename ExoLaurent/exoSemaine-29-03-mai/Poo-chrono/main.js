@@ -1,4 +1,4 @@
-class chrono {
+class Chrono {
     constructor(){
         this.currentTime = 0;
         this.interval;
@@ -7,10 +7,9 @@ class chrono {
         this.s = 0;
         this.ms = 0;
         this.affichage = document.querySelectorAll(".affichage");
-       
     } 
     run() {
-        this.ms += 1;
+        this.ms += 1;    
         if (this.ms == 10) {
             this.ms = 0;
             this.currentTime += 1;
@@ -20,19 +19,17 @@ class chrono {
             this.s = 0;
             this.min += 1;
         }
-        console.log(this.affichage);
-        this.affichage[0].textContent = min + "min";
-        this.affichage[1].textContent = s + "s";
-        this.affichage[2].textContent = ms + "ms";
+        this.affichage[0].textContent = this.min + "min";
+        this.affichage[1].textContent = this.s + "s";
+        this.affichage[2].textContent = this.ms + "ms";
         return this.currentTime;
     }
     start() {
-        this.interval = window.setInterval(this.run, 100);
+        this.interval = setInterval(this.run.bind(this), 100);
         return this.interval;
     }
     pause() {
         this.time = this.run();
-        console.log(this.time);
         clearInterval(this.interval);
     }
     stop() {
@@ -44,7 +41,7 @@ class chrono {
         this.affichage[2].textContent = "0ms";
     }
 }
-let chronometre = new chrono();
+let chronometre = new Chrono();
 let start = document.querySelector(".start");
 let pause = document.querySelector(".pause");
 let stop = document.querySelector(".stop");
