@@ -1,43 +1,47 @@
-let currentTime = 0;
-let interval;
-let time;
-let min = 0,
-    s = 0,
-    ms = 0;
-let affichage = document.querySelectorAll(".affichage");
 class chrono {
+    constructor(){
+        this.currentTime = 0;
+        this.interval;
+        this.time;
+        this.min = 0;
+        this.s = 0;
+        this.ms = 0;
+        this.affichage = document.querySelectorAll(".affichage");
+       
+    } 
     run() {
-        ms += 1;
-        if (ms == 10) {
-            ms = 1;
-            currentTime += 1;
-            s += 1;
+        this.ms += 1;
+        if (this.ms == 10) {
+            this.ms = 0;
+            this.currentTime += 1;
+            this.s += 1;
         }
-        if (s == 60) {
-            s = 1;
-            min += 1;
+        if (this.s == 60) {
+            this.s = 0;
+            this.min += 1;
         }
-        affichage[0].textContent = min + "min";
-        affichage[1].textContent = s + "s";
-        affichage[2].textContent = ms + "ms";
-        return currentTime;
+        console.log(this.affichage);
+        this.affichage[0].textContent = min + "min";
+        this.affichage[1].textContent = s + "s";
+        this.affichage[2].textContent = ms + "ms";
+        return this.currentTime;
     }
     start() {
-        interval = window.setInterval(this.run, 100);
-        return interval;
+        this.interval = window.setInterval(this.run, 100);
+        return this.interval;
     }
     pause() {
-        time = this.run();
-        console.log(time);
-        clearInterval(interval);
+        this.time = this.run();
+        console.log(this.time);
+        clearInterval(this.interval);
     }
     stop() {
-        min = 0, s = 0, ms = 0;
-        currentTime = 0;
-        clearInterval(interval);
-        affichage[0].textContent = "0min";
-        affichage[1].textContent = "0s";
-        affichage[2].textContent = "0ms";
+        this.min = 0, this.s = 0, this.ms = 0;
+        this.currentTime = 0;
+        clearInterval(this.interval);
+        this.affichage[0].textContent = "0min";
+        this.affichage[1].textContent = "0s";
+        this.affichage[2].textContent = "0ms";
     }
 }
 let chronometre = new chrono();
