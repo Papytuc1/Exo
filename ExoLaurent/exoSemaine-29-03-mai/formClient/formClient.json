@@ -1,0 +1,20 @@
+{
+    "client":[
+        {
+            "prenom":"Thibault",
+            "nom":"Cougrand",
+            "age":"25",
+            "profession":"apprentit developpeur",
+            "email":"titi@aol.uk",
+            "telephone":"0669696969"
+        },
+        {
+            "prenom":"Romain",
+            "nom":"Van damme",
+            "age":"29",
+            "profession":"ancien cuistot",
+            "email":"jeanClaude@onlyTime.uk",
+            "telephone":"0666666666"
+        }
+    ]
+}
