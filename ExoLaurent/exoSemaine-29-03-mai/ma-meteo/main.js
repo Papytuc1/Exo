@@ -61,10 +61,12 @@ const request = async (lat, lon) => {
 
 function callRequest(lat, lng) {
     request(lat, lng).then((result) => {
+        let msg =`<p>${result.weather[0].description}</p>
+        <img src=http://openweathermap.org/img/w/${result.weather[0].icon}.png  atl ="weather icon"/>`;
         let e = new L.Marker([lat, lng], {
             icon: icon,
             /* draggable: true */
-        }).addTo(macarte).bindPopup(result.weather[0].description);
+        }).bindPopup(msg).addTo(macarte);
     });
 };
 window.onload = function () {
